@@ -6,7 +6,7 @@ addLayer("a", {
         unlocked: true,
 		points: new Decimal(0),
     }},
-    color: "#4BDC13",
+    color: "#ecb45f",
     requires: new Decimal(10), // Can be a function that takes requirement increases into account
     resource: "Aspen trees", // Name of prestige currency
     baseResource: "points", // Name of resource prestige is based on
@@ -24,5 +24,13 @@ addLayer("a", {
     hotkeys: [
         {key: "a", description: "A: Reset for Aspen trees", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
-    layerShown(){return true}
+    layerShown(){return true},
+    upgrades: {
+        11: {
+            title: "Wait, I thought there was no content?",
+            description: "Chop double the wood per second.",
+            cost: new Decimal(1),
+            
+        },
+    },
 })
