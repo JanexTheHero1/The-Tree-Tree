@@ -13,8 +13,8 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.1",
-	name: "Early stuff. Please go away there's no content yet",
+	num: "0.2",
+	name: "Ok now I do did done some content",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
@@ -44,6 +44,7 @@ function getPointGen() {
 
 	let gain = new Decimal(1)
 	if (hasUpgrade('a', 11)) gain = gain.times(2)
+	if (hasUpgrade('a', 12)) gain = gain.times(upgradeEffect('a', 12))
 	return gain
 }
 
