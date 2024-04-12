@@ -16,6 +16,8 @@ addLayer("a", {
     gainMult() {
         let mult = new Decimal(1)
         if (hasUpgrade('a', 13)) mult = mult.times(upgradeEffect('a', 13))
+        if (hasUpgrade('b', 12)) mult = mult.times(2)
+        if (hasUpgrade('b', 13)) mult = mult.times(upgradeEffect('b', 13))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -85,7 +87,27 @@ addLayer("b", {
         {key: "b", description: "B: reset for Birch trees", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     layerShown(){return true},
-
+    upgrades: {
+        11: {
+            title: "Back to the beginning",
+            description: "Chop double the wood per second.",
+            cost: new Decimal(1)
+        },
+        12: {
+            title: "Alphabetical math",
+            description: "Double Aspen tree gain.",
+            cost: new Decimal(2),
+        },
+        13: {
+            title: "Wait. Isn't that just algebra?",
+            description: "Boost ASPEN TREE gain by BIRCH TREES. It's different again, but it's differently different so it's still different.",
+            cost: new Decimal(3),
+            effect() {
+                return player.a.points.add(1).pow(0.75)
+            },
+            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        },
+    },
     passiveGeneration(){return (0)},
     resetDescription: "Plant ",
     onPrestige(){
