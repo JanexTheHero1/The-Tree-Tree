@@ -103,7 +103,7 @@ addLayer("b", {
             description: "Boost ASPEN TREE gain by BIRCH TREES. It's different again, but it's differently different so it's still different.",
             cost: new Decimal(3),
             effect() {
-                return player.a.points.add(1).pow(0.75)
+                return player[this.layer].points.add(1).pow(0.5)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
